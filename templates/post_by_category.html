@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for p in featured_post %}
+  {% if forloop.first %}
+
+  <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark" style="background-image: url({{p.featured_image.url}});background-blend-mode: overlay;background-size:cover;">
+    <div class="col-md-8 px-0">
+      <h1 class="display-4 font-italic">{{ p.title }} </h1>
+      <p class="lead my-3"> {{ p.short_description | truncatewords:20}} </p>
+      <p class="lead mb-0"><a href="#" class="text-white font-weight-bold">Continue reading...</a></p>
+    </div>
+  </div>
+  
+  {% endif %}
+{% endfor %}    
+
+
+
+  <h3 class='text-uppercase text-info' style='letter-spacing:2px;'> {{category_}}    </h3>
+    <div class="row mb-2">
+        {% if posts %}
+            {% for p in posts %}
+                <div class="col-md-6">
+                <div class="card border-0" >
+                    <div class="card-body">
+                    <h3> {{p.title}} </h3>
+                    <small class="mb-1 text-muted">{{p.created_at | timesince}} | {{p.author}}</small>
+                    <p class="card-text"> {{p.short_description | truncatewords:20}} </p>
+                    </div>
+                </div>
+                </div>
+            {% endfor %}
+        {% else %}
+        <p class= mx-5>Sorry...No posts found....</p>
+        <br><br><br><br><br><br><br><br><br><br><br><br> <br><br><br><br><br><br><br>   
+        {% endif %}
+    </div>
+        
+
+    {% endblock content %}
