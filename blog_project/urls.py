@@ -22,7 +22,9 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-
+    path ('register',views.register, name = 'register'),
+    path ('log_in',views.log_in, name = 'log_in'),
+    path ('log_out',views.log_out, name = 'log_out'),
     path('', include('blogapp.urls')),
 
 ] +static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
